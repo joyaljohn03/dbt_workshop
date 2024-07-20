@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: tpch
+    database: dbtworkshop
+    schema: tpch_sf1
+    tables:
+      - name: orders
+      - name: lineitem

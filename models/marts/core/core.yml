@@ -1,0 +1,24 @@
+version: 2
+models:
+  - name: fct_orders
+    description: fact data from tpch containing order and line item details
+    columns:
+      - name : gross_item_sales_amount
+        description: '{{doc("gross_item_sales_amount")}}'
+      - name: order_key
+        description: The primary key for orders
+        tests:
+          - unique:
+              config:
+                store_failures: true
+          - not_null
+          - relationships:
+              field: order_key
+              to: ref('stg_tpch_orders')
+      - name: status_code
+        tests:
+          - accepted_values:
+              values:
+                - O
+                - F
+                - P
