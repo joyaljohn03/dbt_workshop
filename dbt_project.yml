@@ -42,3 +42,5 @@ models:
       +materialized: view
     customers:
       +materialized: view
+    staging:
+      +materialized: table

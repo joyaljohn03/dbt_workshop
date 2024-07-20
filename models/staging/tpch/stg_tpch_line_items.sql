@@ -15,6 +15,7 @@ select
         l_receiptdate as receipt_date,
         l_shipinstruct as ship_instructions,
         l_shipmode as ship_mode,
-        l_comment as comment
+        l_comment as comment,
+        {{ dbt_utils.generate_surrogate_key(['l_orderkey', 'l_linenumber']) }} as order_item_key
 
     from {{ source('tpch', 'lineitem') }}
