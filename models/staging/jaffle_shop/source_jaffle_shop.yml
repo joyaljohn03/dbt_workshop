@@ -1,0 +1,16 @@
+version: 2
+sources:
+  - name: jaffle_shop
+    database: dbtworkshop
+    schema: jaffle_shop
+    tables:
+      - name: customers
+      - name: orders
+        freshness: # make this a little more strict
+          warn_after: { count: 160, period: hour }
+          error_after: { count: 160, period: hour }
+  - name: stripe
+    database: dbtworkshop
+    schema: stripe
+    tables:
+      - name: payment
